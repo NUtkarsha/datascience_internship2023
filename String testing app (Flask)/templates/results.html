@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Web Application Result</title>
+    <style>
+        body {
+          font-size: 24px;
+          background-image: url("https://www.1digitalagency.com/wp-content/uploads/2023/02/ai-banner-jpg.webp");
+          color: Cyan;
+        }
+        h2.matches-heading {
+          color: SeaShell;
+        }
+        .matched {
+          color: White;
+        }
+      </style>
+  </head>
+  <body>
+    <h1>Web Application Result</h1>
+    {% if matches %}
+      <!-- Add a class to the heading to apply custom styling -->
+      <h2 class="matches-heading">Matches found:</h2>
+      <ul>
+        {% for match in matches %}
+          <!-- Wrap the matched string in a span with a custom class -->
+          <li><span class="matched">{{ match }}</span></li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No matches found please enter correct string or regular expression</p>
+    {% endif %}
+  </body>
+</html>
