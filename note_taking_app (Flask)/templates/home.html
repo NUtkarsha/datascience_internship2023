@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note Taking App</title>
+    <style>
+        body {
+            font-size: 24px;
+            background-image: url("https://thumbs.dreamstime.com/z/work-study-place-notebook-cup-coffee-pink-background-flat-lay-top-view-copy-space-181523017.jpg");
+            color: Indigo;
+        }
+        .app-box {
+            border: 1px solid black;
+            padding: 10px;
+            width: 50%;
+            margin: 0 auto;
+            border-radius: 10px;
+        }
+        .notes-box {
+            border: 1px solid black;
+            padding: 10px;
+            width: 50%;
+            margin: 20px auto;
+            border-radius: 10px;
+        }
+        .notes-box ul li {
+            color: Black;
+            font-size: 20px;
+        }
+        .button-box {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .button-box button {
+            font-size: 16px;
+            background-color: Indigo;
+            color : PapayaWhip;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .flash {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: White;
+            color: Black;
+            padding: 16px;
+            border-radius: 10px;
+            z-index: 1;
+            opacity: 1;
+            transition: opacity 0.1s ease-in-out;
+        }
+        .hide {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-box">
+        <h2>...Share Your Notes Here...</h2>
+        <form method="POST" action="/">
+            <div style="margin-bottom: 10px;">
+                <input type="text" name="note" placeholder="Enter a note" style="width: 95%;">
+            </div>
+            <div class="button-box">
+                <button type="submit">Add Note</button>
+                <button type="button" onclick="location.href='{{ url_for('clear_notes') }}'">Clear Notes</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="notes-box">
+        <h2>...Your Notes...</h2>
+        <ul>
+            {% for note in notes%}
+                <li>{{ note }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash">{{ message }}</div>
+                <script>
+                    
+                    setTimeout(function() {
+                        var flash = document.querySelector('.flash');
+                        flash.classList.add('hide');
+                    }, 1500);
+                </script>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</body>
+</html>
+
+
+
