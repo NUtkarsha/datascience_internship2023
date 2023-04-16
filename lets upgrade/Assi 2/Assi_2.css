@@ -1,0 +1,56 @@
+.element {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translate(0, -50%);
+  font-size: 50px;
+  animation: move 12s linear infinite;
+}
+
+@keyframes move {
+  0% {
+    left: 0;
+  }
+  20% {
+    content: "\1F49C";
+  }
+  40% {
+    content: "\1F49A";
+  }
+  60% {
+    content: "\1F499";
+  }
+  80% {
+    content: "\1F49B";
+  }
+  100% {
+    left: calc(100% - 50px);
+    content: "\1F497";
+  }
+}
+
+.element::before {
+  content: "\1F49C";
+  animation: changeEmoji 12s linear infinite;
+}
+
+@keyframes changeEmoji {
+  0% {
+    content: "\1F49C";
+  }
+  20% {
+    content: "\1F49A";
+  }
+  40% {
+    content: "\1F499";
+  }
+  60% {
+    content: "\1F49B";
+  }
+  80% {
+    content: "\1F497";
+  }
+  100% {
+    content: "\1F49C";
+  }
+}
